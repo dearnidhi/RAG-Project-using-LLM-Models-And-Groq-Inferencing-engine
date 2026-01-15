@@ -1,43 +1,63 @@
-command to run code:- streamlit run app.py
+# ChatGroq Web Document Q&A with Streamlit 🤖📄
 
-A well-structured Streamlit application for a question-answering system using Groq and OpenAI embeddings. 
-Here are some aspects you within this projec
+This project is a **Streamlit-based Retrieval-Augmented Generation (RAG) application** that allows users to ask questions about web documentation and receive accurate answers using **Groq LLMs**, **LangChain**, and **FAISS**.
 
-1. Functionality:
+The app loads documentation from a given website, embeds the content, stores it in a vector database, and retrieves relevant context to answer user queries.
 
-Describe the application's purpose: It's a question-answering system that retrieves relevant information from loaded web documents and uses Groq to answer user prompts based on that context.
-2. Components:
+---
 
-Explain the key components:
-Web document loader: Fetches documents from a specified URL (e.g., "https://docs.smith.langchain.com/").
-Text splitter: Breaks down large documents into smaller chunks for better processing.
-FAISS index: Enables efficient retrieval of similar documents based on their embeddings.
-OpenAI embeddings: Generates vector representations of text for document similarity.
-ChatGroq model: Interacts with the Groq large language model for answering questions.
-Chat prompt template: Defines the format for presenting context and questions to Groq.
-Retrieval chain: Combines document retrieval and interaction with Groq.
-3. Streamlit Integration:
+## 🚀 Features
 
-Explain how Streamlit is used to create a user interface:
-Displays a title ("ChatGroq Demo").
-Provides a text input field for users to enter their prompts.
-Shows the retrieved answer from Groq.
-Offers an expandable section for displaying relevant document snippets.
-4.  Execution Flow:
+- Web-based document loading using LangChain
+- Text chunking with overlap for better context retrieval
+- Vector storage using FAISS
+- Fast inference using Groq LLMs
+- Interactive Streamlit UI
+- Document similarity search with expandable context view
 
-Describe the application's workflow:
-Initializes session state variables on first run (embeddings, loader, documents, etc.).
-Loads documents from the web and splits them into manageable chunks.
-Creates a FAISS index for fast document retrieval based on similarity.
-When the user enters a prompt:
-Measures the processing time.
-Uses the retrieval chain to find relevant document snippets based on the prompt.
-Sends the context (relevant snippets) and questions to Groq for answer generation.
-Displays the answer received from Groq.
-Optionally shows the retrieved document snippets within an expandable section.
-5. Customization:
+---
 
-You can document potential customizations:
-Changing the web document source using st.session_state.loader = WebBaseLoader("new_url").
-Adjusting the document splitting parameters in RecursiveCharacterTextSplitter.
-Modifying the Chat prompt template (e.g., adding additional instructions for Groq).
+## 🧠 How It Works
+
+1. Loads documentation from a web URL
+2. Splits documents into manageable chunks
+3. Converts text into embeddings
+4. Stores embeddings in a FAISS vector store
+5. Retrieves relevant chunks based on user query
+6. Uses ChatGroq to generate context-aware answers
+
+---
+
+---
+
+## ▶️ How to Run
+
+### 1. Install Dependencies
+```bash
+pip install streamlit langchain langchain-groq langchain-community faiss-cpu python-dotenv openai
+2. Set Environment Variables
+Create a .env file:
+.env
+GROQ_API_KEY=your_groq_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+
+3. Run the Application
+streamlit run app.py
+
+🧪 Usage
+Enter a question related to the loaded documentation
+Get an answer generated strictly from the retrieved context
+Expand Document Similarity Search to view matched document chunks
+
+🛠️ Tech Stack
+Python
+Streamlit
+LangChain
+Groq LLM (Mixtral)
+FAISS
+OpenAI Embeddings
+
+⚠️ Notes
+The app loads only the first 50 documents for performance reasons
+Designed for learning and experimentation with RAG pipelines
+Not intended for production-scale deployments
